@@ -1,0 +1,48 @@
+
+
+<form class="form-inline" role="form">
+  <div class="form-group">
+    <label class="sr-only" for="marker_name">Name:</label>
+    <input class="form-control" id="marker_name">
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="marker_category">Category:</label>
+    <input class="form-control" id="marker_category">
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="marker_address">Address:</label>
+    <input class="form-control" id="marker_address">
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="marker_longitude">Coordinates:</label>
+    <input class="form-control" placeholder="Longitude" id="marker_longitude">
+    <input class="form-control" placeholder="Latitude" id="marker_latitude">
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="marker_category">Open from/untill:</label>
+
+    <div class="input-group bootstrap-timepicker timepicker">
+      <input id="timepicker_from" type="text" class="form-control input-small">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+    </div>
+
+    <div class="input-group bootstrap-timepicker timepicker">
+      <input id="timepicker_untill" type="text" class="form-control input-small">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+    </div>
+
+  </div>
+
+  <button class="btn btn success"></button>
+
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+

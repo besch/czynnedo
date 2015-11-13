@@ -1,0 +1,30 @@
+{
+  "name": "geolocation",
+  "version": "0.0.0",
+  "authors": [
+    "nvinorgr <nikolay.vinorgradskiy@tekcomms.com>"
+  ],
+  "directory": "public/bower_components",
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "es6",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "~1.11.4",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "bootstrap-timepicker": "*"
+  }
+}
