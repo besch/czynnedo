@@ -23,13 +23,13 @@ $(document).ready(function() {
             '<div>' + 
               'h4> Otwarte: </h4>' + 
               '<div>' +
-                '<p>Poniedziałek: ' + marker.weekdays.monday.openHours + ' ' + marker.weekdays.monday.closeHours + '</p>' +
-                '<p>Wtorek: ' + marker.weekdays.tuesday.openHours + ' ' + marker.weekdays.tuesday.closeHours + '</p>' +
-                '<p>Środa: ' + marker.weekdays.wednesday.openHours + ' ' + marker.weekdays.wednesday.closeHours + '</p>' +
-                '<p>Czwartek: ' + marker.weekdays.thursday.openHours + ' ' + marker.weekdays.thursday.closeHours + '</p>' +
-                '<p>Piątek: ' + marker.weekdays.friday.openHours + ' ' + marker.weekdays.friday.closeHours + '</p>' +
-                '<p>Sobota: ' + marker.weekdays.saturday.openHours + ' ' + marker.weekdays.saturday.closeHours + '</p>' +
-                '<p>Niedziela: ' + marker.weekdays.sunday.openHours + ' ' + marker.weekdays.sunday.closeHours + '</p>' +
+                '<p>Poniedziałek: ' + marker.weekdays.monday.openHours || '' + ' ' + marker.weekdays.monday.closeHours || '' + '</p>' +
+                '<p>Wtorek: ' + marker.weekdays.tuesday.openHours || '' + ' ' + marker.weekdays.tuesday.closeHours || '' + '</p>' +
+                '<p>Środa: ' + marker.weekdays.wednesday.openHours || '' + ' ' + marker.weekdays.wednesday.closeHours || '' + '</p>' +
+                '<p>Czwartek: ' + marker.weekdays.thursday.openHours || '' + ' ' + marker.weekdays.thursday.closeHours || '' + '</p>' +
+                '<p>Piątek: ' + marker.weekdays.friday.openHours || '' + ' ' + marker.weekdays.friday.closeHours || '' + '</p>' +
+                '<p>Sobota: ' + marker.weekdays.saturday.openHours || '' + ' ' + marker.weekdays.saturday.closeHours || '' + '</p>' +
+                '<p>Niedziela: ' + marker.weekdays.sunday.openHours || '' + ' ' + marker.weekdays.sunday.closeHours || '' + '</p>' +
               '</div>' +
           '</div>'+
         '</div>';
@@ -52,10 +52,7 @@ $(document).ready(function() {
   
 
   $.ajax({
-    // dataType: "json",
     url: '/marker'
-    // data: data,
-    // success: success
   }).done(function (data) {
     console.log('data', data);
 

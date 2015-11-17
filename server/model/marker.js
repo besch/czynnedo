@@ -9,8 +9,8 @@ var markerSchema = new Schema({
   category:    { type: String, required: true },
   created:     { type: Date, default: Date.now },
   address:     { type: String },
-  lat:         { type: String },
-  lng:         { type: String },
+  latitude:    { type: Number, required: true },
+  longitude:   { type: Number, required: true },
   weekdays: {
     monday: {
       openHours:    Number,
