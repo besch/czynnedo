@@ -1,7 +1,7 @@
 var Hapi = require('hapi'),
-  Routes = require('./routes'),
-  Db = require('./config/db'),
-  Config = require('./config/config');
+  Routes = require('./server/routes'),
+  Db = require('./server/config/db'),
+  Config = require('./server/config/config');
 
 var app = {};
 app.config = Config;
@@ -10,6 +10,7 @@ app.config = Config;
 //var server = Hapi.createServer(app.config.server.host, app.config.server.port, {cors: true});
 
 console.log('Hapi', Hapi);
+console.log('Routes', Routes);
 
 var server = new Hapi.Server();
 
