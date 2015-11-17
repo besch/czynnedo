@@ -10,7 +10,7 @@ add to package.json -> scripts  "postinstall": "bower install && grunt build"
 in Procfile
 web: cd server; node server.js
 if run "node server/server.js" node doesn't find global modules
-
+https://czynnedo.herokuapp.com/
 
 
 

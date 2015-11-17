@@ -9,9 +9,9 @@ app.config = Config;
 //For older version of hapi.js
 //var server = Hapi.createServer(app.config.server.host, app.config.server.port, {cors: true});
 
-var server = new Hapi.Server();
+var server = new Hapi.Server(+process.env.PORT, '0.0.0.0');
 
-server.connection({ port: app.config.server.port });
+// server.connection({ ~~process.env.PORT || port: app.config.server.port });
 
 server.route(Routes.endpoints);
 
