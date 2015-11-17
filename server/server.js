@@ -1,15 +1,20 @@
-var Hapi = require('hapi');
-var routes = require('./routes');
+var Hapi = require('hapi'),
+  Routes = require('./routes'),
+  Db = require('./config/db'),
+  Config = require('./config/config');
 
-var config = { };
-var server = new Hapi.Server('127.0.0.1', 8180, config); // 0.0.0.0
-server.pack.require({ lout: { endpoint: '/docs' } }, function (err) {
+var app = {};
+app.config = Config;
 
-    if (err) {
-        console.log('Failed loading plugins');
-    }
+//For older version of hapi.js
+//var server = Hapi.createServer(app.config.server.host, app.config.server.port, {cors: true});
+
+var server = new Hapi.Server();
+
+server.connection({ port: app.config.server.port });
+
+server.route(Routes.endpoints);
+
+server.start(function () {
+  console.log('Server started ', server.info.uri);
 });
-
-server.addRoutes(routes);
-
-server.start();
