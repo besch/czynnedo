@@ -6,3 +6,8 @@ select.form-control {
 .input-group-addon {
   width: 150px;
 }
+
+#map {
+  width: 600px;
+  height: 400px;
+}

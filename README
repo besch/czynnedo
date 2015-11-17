@@ -1,3 +1,23 @@
+// Create buildpack and deploy
+heroku create --buildpack https://github.com/besch/czynnedo.git
+git add .
+git commit -m ""
+git push origin master
+git push heroku master
+
+
+heroku ps:scale web=1
+heroku open
+
+
+url:        http://czynnedo.herokuapp.com/#/map
+
+
+
+
+
+
+
 // TODO
 
 add to package.json -> scripts  "postinstall": "bower install && grunt build"
@@ -14,12 +34,7 @@ https://czynnedo.herokuapp.com/
 
 
 
-// Create buildpack
-heroku create --buildpack https://github.com/besch/czynnedo.git
-git push heroku master
-
-
-
 
 // Procfile not working
 web: node server/server.js
+

@@ -26,15 +26,22 @@
 <!-- MAIN CONTENT -->
 <div class="container">
 
+
+    <div id="map"></div>
+
+
     <div ui-view></div>
 
 </div>
 
 
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false"></script>
 
+    <script type="text/javascript" src="assets/maps.js"></script>
 
-
-
+    <!-- Angular dependencies -->
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
