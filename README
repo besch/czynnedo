@@ -17,3 +17,9 @@ if run "node server/server.js" node doesn't find global modules
 // Create buildpack
 heroku create --buildpack https://github.com/besch/czynnedo.git
 git push heroku master
+
+
+
+
+// Procfile not working
+web: node server/server.js
