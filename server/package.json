@@ -22,6 +22,6 @@
     "email": "vinogradskiy.n@mail.com"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server.js"
   }
 }

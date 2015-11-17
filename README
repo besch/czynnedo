@@ -10,3 +10,10 @@ add to package.json -> scripts  "postinstall": "bower install && grunt build"
 in Procfile
 web: cd server; node server.js
 if run "node server/server.js" node doesn't find global modules
+
+
+
+
+// Create buildpack
+heroku create --buildpack https://github.com/besch/czynnedo.git
+git push heroku master
