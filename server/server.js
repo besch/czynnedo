@@ -11,7 +11,7 @@ app.config = Config;
 
 var server = new Hapi.Server();
 
-server.connection({ ~~process.env.PORT || port: app.config.server.port });
+server.connection({ +process.env.PORT || port: app.config.server.port });
 
 server.route(Routes.endpoints);
 
