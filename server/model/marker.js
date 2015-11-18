@@ -24,7 +24,13 @@ var markerSchema = new Schema({
       closeHours:   Number,
       closeMinutes: Number
     },
-    thirsday: {
+    wednesday: {
+      openHours:    Number,
+      openMinutes:  Number,
+      closeHours:   Number,
+      closeMinutes: Number
+    },
+    thursday: {
       openHours:    Number,
       openMinutes:  Number,
       closeHours:   Number,

@@ -16,6 +16,25 @@ $(document).ready(function() {
     // var position = new google.maps.LatLng({ lat: parseFloat(marker.lat), lng: parseFloat(marker.lat) });
     // console.log('position', position);
 
+    var weekdays = marker.weekdays;
+
+    var mon_start = ( _.has(weekdays, 'monday.openHours') ? weekdays.monday.openHours  : '') + ':' + ( _.has(weekdays, 'monday.openMinutes') ? weekdays.monday.openMinutes : ''),
+        tue_start = ( _.has(weekdays, 'tuesday.openHours') ? weekdays.tuesday.openHours  : '') + ':' + ( _.has(weekdays, 'tuesday.openMinutes') ? weekdays.tuesday.openMinutes : ''),
+        wed_start = ( _.has(weekdays, 'wednesday.openHours') ? weekdays.wednesday.openHours  : '') + ':' + ( _.has(weekdays, 'wednesday.openMinutes') ? weekdays.wednesday.openMinutes : ''),
+        thu_start = ( _.has(weekdays, 'thursday.openHours') ? weekdays.thursday.openHours  : '') + ':' + ( _.has(weekdays, 'thursday.openMinutes') ? weekdays.thursday.openMinutes : ''),
+        fri_start = ( _.has(weekdays, 'friday.openHours') ? weekdays.friday.openHours  : '') + ':' + ( _.has(weekdays, 'friday.openMinutes') ? weekdays.friday.openMinutes : ''),
+        sat_start = ( _.has(weekdays, 'saturday.openHours') ? weekdays.saturday.openHours  : '') + ':' + ( _.has(weekdays, 'saturday.openMinutes') ? weekdays.saturday.openMinutes : ''),
+        sun_start = ( _.has(weekdays, 'sunday.openHours') ? weekdays.sunday.openHours  : '') + ':' + ( _.has(weekdays, 'sunday.openMinutes') ? weekdays.sunday.openMinutes : '');
+
+    var mon_end = ( _.has(weekdays, 'monday.closeHours') ? weekdays.monday.closeHours  : '') + ':' + ( _.has(weekdays, 'monday.closeMinutes') ? weekdays.monday.closeMinutes : ''),
+        tue_end = ( _.has(weekdays, 'tuesday.closeHours') ? weekdays.tuesday.closeHours  : '') + ':' + ( _.has(weekdays, 'tuesday.closeMinutes') ? weekdays.tuesday.closeMinutes : ''),
+        wed_end = ( _.has(weekdays, 'wednesday.closeHours') ? weekdays.wednesday.closeHours  : '') + ':' + ( _.has(weekdays, 'wednesday.closeMinutes') ? weekdays.wednesday.closeMinutes : ''),
+        thu_end = ( _.has(weekdays, 'thursday.closeHours') ? weekdays.thursday.closeHours  : '') + ':' + ( _.has(weekdays, 'thursday.closeMinutes') ? weekdays.thursday.closeMinutes : ''),
+        fri_end = ( _.has(weekdays, 'friday.closeHours') ? weekdays.friday.closeHours  : '') + ':' + ( _.has(weekdays, 'friday.closeMinutes') ? weekdays.friday.closeMinutes : ''),
+        sat_end = ( _.has(weekdays, 'saturday.closeHours') ? weekdays.saturday.closeHours  : '') + ':' + ( _.has(weekdays, 'saturday.closeMinutes') ? weekdays.saturday.closeMinutes : ''),
+        sun_end = ( _.has(weekdays, 'sunday.closeHours') ? weekdays.sunday.closeHours  : '') + ':' + ( _.has(weekdays, 'sunday.closeMinutes') ? weekdays.sunday.closeMinutes : '');
+
+
     var contentString = '<div id="content">'+
         '<div id="siteNotice"></div>'+
           '<h1 id="firstHeading" class="firstHeading">' + marker.name + '</h1>'+
@@ -23,19 +42,20 @@ $(document).ready(function() {
             '<p>' + marker.description + '</p>'+
             '<p>' + marker.category + '</p>'+
             '<div>' + 
-              'h4> Otwarte: </h4>' + 
+              '<h4> Otwarte: </h4>' + 
               '<div>' +
-                '<p>Poniedziałek: ' + marker.weekdays.monday.openHours || '' + ' ' + marker.weekdays.monday.closeHours || '' + '</p>' +
-                '<p>Wtorek: ' + marker.weekdays.tuesday.openHours || '' + ' ' + marker.weekdays.tuesday.closeHours || '' + '</p>' +
-                '<p>Środa: ' + marker.weekdays.wednesday.openHours || '' + ' ' + marker.weekdays.wednesday.closeHours || '' + '</p>' +
-                '<p>Czwartek: ' + marker.weekdays.thursday.openHours || '' + ' ' + marker.weekdays.thursday.closeHours || '' + '</p>' +
-                '<p>Piątek: ' + marker.weekdays.friday.openHours || '' + ' ' + marker.weekdays.friday.closeHours || '' + '</p>' +
-                '<p>Sobota: ' + marker.weekdays.saturday.openHours || '' + ' ' + marker.weekdays.saturday.closeHours || '' + '</p>' +
-                '<p>Niedziela: ' + marker.weekdays.sunday.openHours || '' + ' ' + marker.weekdays.sunday.closeHours || '' + '</p>' +
+                '<p>Poniedziałek: ' + mon_start + ' - ' + mon_end + '</p>' +
+                '<p>Wtorek: '       + tue_start + ' - ' + tue_end + '</p>' +
+                '<p>Środa: '        + wed_start + ' - ' + wed_end + '</p>' +
+                '<p>Czwartek: '     + thu_start + ' - ' + thu_end + '</p>' +
+                '<p>Piątek: '       + fri_start + ' - ' + fri_end + '</p>' +
+                '<p>Sobota: '       + sat_start + ' - ' + sat_end + '</p>' +
+                '<p>Niedziela: '    + sun_start + ' - ' + sun_end + '</p>' +
               '</div>' +
             '</div>' +
           '</div>'+
-        '</div>';
+        '</div>'
+      '</div>';
 
     var infowindow = new google.maps.InfoWindow({
       content: contentString
