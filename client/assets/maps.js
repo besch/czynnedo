@@ -12,7 +12,9 @@ $(document).ready(function() {
   // INIT MAP
 
   function addMarker (marker) {
-    var position = {lat: marker.lat, lng: marker.lat};
+    var position = { lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) };
+    // var position = new google.maps.LatLng({ lat: parseFloat(marker.lat), lng: parseFloat(marker.lat) });
+    // console.log('position', position);
 
     var contentString = '<div id="content">'+
         '<div id="siteNotice"></div>'+
@@ -31,6 +33,7 @@ $(document).ready(function() {
                 '<p>Sobota: ' + marker.weekdays.saturday.openHours || '' + ' ' + marker.weekdays.saturday.closeHours || '' + '</p>' +
                 '<p>Niedziela: ' + marker.weekdays.sunday.openHours || '' + ' ' + marker.weekdays.sunday.closeHours || '' + '</p>' +
               '</div>' +
+            '</div>' +
           '</div>'+
         '</div>';
 
@@ -44,8 +47,10 @@ $(document).ready(function() {
       title: marker.name
     });
 
+    // console.log('marker', marker);
+
     marker.addListener('click', function() {
-      infowindow.open($scope.map, marker);
+      infowindow.open(map, marker);
     });
   }
 
@@ -54,9 +59,9 @@ $(document).ready(function() {
   $.ajax({
     url: '/marker'
   }).done(function (data) {
-    console.log('data', data);
 
     data.forEach(function (marker, key) {
+      // console.log('marker', marker);
       addMarker(marker);
     });
   });

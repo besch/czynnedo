@@ -16,16 +16,16 @@ angular.module('czynnedo')
     }
 
     $scope.addMarker = function () {
-      $scope.marker.latitude = parseFloat($scope.marker.latitude);
-      $scope.marker.longitude = parseFloat($scope.marker.longitude);
+      console.log('parseFloat($scope.marker.latitude, 10)', parseFloat($scope.marker.latitude, 10));
+      console.log('parseFloat($scope.marker.longitude, 10)', parseFloat($scope.marker.longitude, 10));
 
       markerService.create({
         name:        $scope.marker.name || 'Name',
         description: $scope.marker.description || 'Desc',
         category:    $scope.marker.category || 'Restaurants',
         // address:     $scope.marker.address || 'new address',
-        lat:         $scope.marker.latitude || 52.40241887,
-        lng:         $scope.marker.longitude || 16.88598633,
+        lat:         parseFloat($scope.marker.latitude, 10) || 52.40241887,
+        lng:         parseFloat($scope.marker.longitude, 10) || 16.88598633,
         weekdays:    {
           monday: {
             openHours: $scope.marker.hour.start.monday,

@@ -6,22 +6,22 @@
 
   <div class="input-group">
     <span class="input-group-addon">Nazwa</span>
-    <input type="text" class="form-control" placeholder="Restauracja pod Wawelem" id="marker_add_name">
+    <input type="text" class="form-control" placeholder="Restauracja pod Wawelem" ng-model="marker.name">
   </div>
 
   <div class="input-group">
     <span class="input-group-addon">Opis</span>
-    <input type="text" class="form-control" placeholder="Centrum Warszawy" id="marker_add_description">
+    <input type="text" class="form-control" placeholder="Centrum Warszawy" ng-model="marker.description">
   </div>
 
   <div class="input-group">
     <span class="input-group-addon">Katagoria</span>
-    <select class="form-control" ng-options="category as category for category in categories" id="marker_add_category"></select>
+    <select class="form-control" ng-options="category as category for category in categories" ng-model="marker.category"></select>
   </div>
 
 <!--   <div class="input-group">
     <span class="input-group-addon">Address</span>
-    <input class="form-control" placeholder="53-625 Wrocław" id="marker_add_address">
+    <input class="form-control" placeholder="53-625 Wrocław" ng-model="marker.address">
   </div> -->
 
   <div class="input-group">
@@ -31,7 +31,7 @@
           <span class="input-group-addon">
             <span class="input-group-addon">Lattitude</span>
           </span>
-          <input type="text" class="form-control" placeholder="69.42341" id="marker_add_latitude">
+          <input type="text" class="form-control" placeholder="69.42341" ng-model="marker.latitude">
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
 
@@ -40,7 +40,7 @@
           <span class="input-group-addon">
             <span class="input-group-addon">Longitude</span>
           </span>
-          <input type="text" class="form-control" placeholder="73.42341" id="marker_add_longitude">
+          <input type="text" class="form-control" placeholder="73.42341" ng-model="marker.longitude">
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
@@ -56,14 +56,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_monday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_monday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.monday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.monday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_monday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_monday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.monday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.monday"></select>
       </div>
     </div>
 
@@ -72,14 +72,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_tuesday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_tuesday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.tuesday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.tuesday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_tuesday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_tuesday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.tuesday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.tuesday"></select>
       </div>
     </div>
 
@@ -88,14 +88,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_wednesday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_wednesday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.wednesday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.wednesday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_wednesday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_wednesday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.wednesday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.wednesday"></select>
       </div>
     </div>
 
@@ -104,14 +104,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_thursday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_thursday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.thursday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.thursday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_thursday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_thursday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.thursday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.thursday"></select>
       </div>
     </div>
 
@@ -120,14 +120,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_friday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_friday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.friday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.friday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_friday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_friday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.friday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.friday"></select>
       </div>
     </div>
 
@@ -136,14 +136,14 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_saturday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_saturday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.saturday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.saturday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_saturday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_saturday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.saturday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.saturday"></select>
       </div>
     </div>
 
@@ -152,23 +152,23 @@
 
       <div class="col-md-6">
         <h6>Start</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_start_sunday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_start_sunday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.start.sunday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.start.sunday"></select>
       </div>
 
       <div class="col-md-6">
         <h6>End</h6>
-        <select class="form-control" ng-options="hour as hour for hour in hours" id="marker_add_hour_end_sunday"></select>
-        <select class="form-control" ng-options="minute as minute for minute in minutes" id="minute_end_sunday"></select>
+        <select class="form-control" ng-options="hour as hour for hour in hours" ng-model="marker.hour.end.sunday"></select>
+        <select class="form-control" ng-options="minute as minute for minute in minutes" ng-model="minute.end.sunday"></select>
       </div>
     </div>
   </div>
 
 
 
-  <input type="checkbox" id="marker_add_check_monday_to_friday" /> Check if Monday - Friday has same openning and closing hours
+  <input type="checkbox" ng-model="marker.check.monday_to_friday" /> Check if Monday - Friday has same openning and closing hours
 
-  <button type="submit" class="btn btn-default" id="marker_add_submit">Submit</button>
+  <button type="submit" class="btn btn-default" ng-click="addMarker()">Submit</button>
 
 
 
