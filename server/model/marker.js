@@ -13,46 +13,32 @@ var markerSchema = new Schema({
   longitude:   { type: Number, required: true },
   weekdays: {
     monday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     tuesday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     wednesday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     thursday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     friday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     saturday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     },
     sunday: {
-      openHours:    Number,
-      openMinutes:  Number,
-      closeHours:   Number,
-      closeMinutes: Number
+      open:    Number,
+      close:   Number,
     }
   }
 });

@@ -102,3 +102,10 @@ exports.removeAll = {
     });
   }
 };
+
+
+exports.importAll = {
+  handler: function (request, reply) {
+    return reply({ message: request.toString() });
+  }
+};

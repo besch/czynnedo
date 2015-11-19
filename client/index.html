@@ -1,59 +1,36 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
 
-    <!-- CSS (load bootstrap) -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 </head>
 
-<body ng-app="czynnedo">
+<body>
 
-<!-- NAVIGATION -->
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="#">Title</a>
+  <div id="map"></div>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <!-- <h3 class="panel-title">Import markers as JSON</h3> -->
     </div>
-    <ul class="nav navbar-nav">
-        <li><a ui-sref="map">Map</a></li>
-        <li><a ui-sref="addMarker">Add marker</a></li>
-    </ul>
-</nav>
-
-<div id="map"></div>
-
-<!-- MAIN CONTENT -->
-<div class="container">
+    <div class="panel-body">
+      <textarea id="import-markers-json"></textarea>
+      <!-- <button id="import-markers-upload" class="btn btn-success">Upload markers</button> -->
+      <button id="import-markers-upload" class="btn btn-success">Submit</button>
+    </div>
+  </div>
 
 
-    
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false"></script>
 
-    <div ui-view></div>
-
-</div>
-
-
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false"></script>
-
-    <script type="text/javascript" src="assets/maps.js"></script>
-
-    <!-- Angular dependencies -->
-    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-
-    <script src="app.js"></script>
-    <script src="assets/js/services/marker.js"></script>
-    <script src="assets/js/controllers/addMarker.js"></script>
-    <script src="assets/js/controllers/map.js"></script>
-
-
+  <script type="text/javascript" src="assets/maps.js"></script>
+  <script type="text/javascript" src="assets/importMarkers.js"></script>
 
 </body>
 </html>

@@ -13,8 +13,6 @@ $(document).ready(function() {
 
   function addMarker (marker) {
     var position = { lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) };
-    // var position = new google.maps.LatLng({ lat: parseFloat(marker.lat), lng: parseFloat(marker.lat) });
-    // console.log('position', position);
 
     var weekdays = marker.weekdays;
 
@@ -35,12 +33,13 @@ $(document).ready(function() {
         sun_end = ( _.has(weekdays, 'sunday.closeHours') ? weekdays.sunday.closeHours  : '') + ':' + ( _.has(weekdays, 'sunday.closeMinutes') ? weekdays.sunday.closeMinutes : '');
 
 
-    var contentString = '<div id="content">'+
+    var markerContent = '<div id="content">'+
         '<div id="siteNotice"></div>'+
           '<h1 id="firstHeading" class="firstHeading">' + marker.name + '</h1>'+
           '<div id="bodyContent">'+
-            '<p>' + marker.description + '</p>'+
-            '<p>' + marker.category + '</p>'+
+            '<p><b>Description</b>: ' + marker.description + '</p>'+
+            '<p><b>Category</b>: ' + marker.category + '</p>'+
+            '<p><b>Address</b>: ' + findAddressByCoords(position) + '</p>'+
             '<div>' + 
               '<h4> Otwarte: </h4>' + 
               '<div>' +
@@ -58,7 +57,7 @@ $(document).ready(function() {
       '</div>';
 
     var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: markerContent
     });
 
     var marker = new google.maps.Marker({
@@ -67,23 +66,35 @@ $(document).ready(function() {
       title: marker.name
     });
 
-    // console.log('marker', marker);
-
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
   }
 
   
-
-  $.ajax({
-    url: '/marker'
-  }).done(function (data) {
-
-    data.forEach(function (marker, key) {
-      // console.log('marker', marker);
-      addMarker(marker);
+  function findAddressByCoords (coords) {
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({'location': coords }, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          return results[1].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
     });
-  });
+  }
+
+
+  // $.ajax({
+  //   url: '/marker'
+  // }).done(function (data) {
+
+  //   data.forEach(function (marker, key) {
+  //     addMarker(marker);
+  //   });
+  // });
 
 });
