@@ -15,5 +15,5 @@ exports.endpoints = [
   { method: 'DELETE', path: '/marker', config: Marker.removeAll},
 
   // Import markers as excel/json
-  { method: 'POST', path: '/marker/import', config: Marker.importAll}
+  { method: 'POST', path: '/import', config: Marker.import}
 ];

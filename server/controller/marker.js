@@ -104,8 +104,23 @@ exports.removeAll = {
 };
 
 
-exports.importAll = {
+exports.import = {
+
   handler: function (request, reply) {
-    return reply({ message: request.toString() });
+    var items = request.payload;
+
+    items.forEach(function (item) {
+      var marker = new Marker(item);
+
+      marker.save(function (err, marker) {
+        if (!err) {
+          console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
+        }
+        if (11000 === err.code || 11001 === err.code) {
+          console.log(reply(Boom.forbidden("please provide another id, it already exist")));
+        }
+        console.log(reply(Boom.forbidden(err))); // HTTP 403
+      });
+    });
   }
 };

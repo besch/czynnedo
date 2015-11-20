@@ -88,13 +88,13 @@ $(document).ready(function() {
   }
 
 
-  // $.ajax({
-  //   url: '/marker'
-  // }).done(function (data) {
+  $.ajax({
+    url: '/marker'
+  }).done(function (data) {
 
-  //   data.forEach(function (marker, key) {
-  //     addMarker(marker);
-  //   });
-  // });
+    data.forEach(function (marker, key) {
+      addMarker(marker);
+    });
+  });
 
 });
