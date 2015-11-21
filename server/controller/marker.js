@@ -3,8 +3,43 @@
 var Joi = require('joi'),
   Boom = require('boom'),
   Marker = require('../model/marker').Marker,
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  geocode = require('../helpers/geocode.js'),
+  q = require('q');
 
+
+
+exports.import = {
+
+  handler: function (request, reply) {
+    var items = request.payload;
+    var response = [];
+
+    items.forEach(function (item) {
+      var marker = new Marker(item);
+      var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+      
+      findAddressByCoords(position);
+
+      marker.save(function (err, marker) {
+        if (!err) {
+          console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
+        }
+        if (11000 === err.code || 11001 === err.code) {
+          console.log(reply(Boom.forbidden("please provide another id, it already exist")));
+        }
+        console.log(reply(Boom.forbidden(err))); // HTTP 403
+      });
+
+      // If either address or coordinates exists logic TODO
+
+      
+    });
+
+    console.log('response', response);
+    reply(response);
+  }
+};
 
 exports.getAll = {
   handler: function (request, reply) {
@@ -104,23 +139,3 @@ exports.removeAll = {
 };
 
 
-exports.import = {
-
-  handler: function (request, reply) {
-    var items = request.payload;
-
-    items.forEach(function (item) {
-      var marker = new Marker(item);
-
-      marker.save(function (err, marker) {
-        if (!err) {
-          console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
-        }
-        if (11000 === err.code || 11001 === err.code) {
-          console.log(reply(Boom.forbidden("please provide another id, it already exist")));
-        }
-        console.log(reply(Boom.forbidden(err))); // HTTP 403
-      });
-    });
-  }
-};

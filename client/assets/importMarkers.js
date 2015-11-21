@@ -5,7 +5,7 @@ $(document).ready(function() {
 		var markersData = $('#import-markers-json').val().replace(/\n|\r/g, '');
 		var markersInJson = JSON.parse(markersData);
 		markersInJson = JSON.stringify(markersInJson);
-		console.log('markersInJson', markersInJson);
+		// console.log('markersInJson', markersInJson);
 
 		$.ajax({
 			method: 'POST',

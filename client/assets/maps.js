@@ -39,7 +39,7 @@ $(document).ready(function() {
           '<div id="bodyContent">'+
             '<p><b>Description</b>: ' + marker.description + '</p>'+
             '<p><b>Category</b>: ' + marker.category + '</p>'+
-            '<p><b>Address</b>: ' + findAddressByCoords(position) + '</p>'+
+            // '<p><b>Address</b>: ' + findAddressByCoords(position) + '</p>'+
             '<div>' + 
               '<h4> Otwarte: </h4>' + 
               '<div>' +
@@ -72,20 +72,20 @@ $(document).ready(function() {
   }
 
   
-  function findAddressByCoords (coords) {
-    var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({'location': coords }, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {
-        if (results[1]) {
-          return results[1].formatted_address;
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
-  }
+  // function findAddressByCoords (coords) {
+  //   var geocoder = new google.maps.Geocoder;
+  //   geocoder.geocode({'location': coords }, function(results, status) {
+  //     if (status === google.maps.GeocoderStatus.OK) {
+  //       if (results[1]) {
+  //         return results[1].formatted_address;
+  //       } else {
+  //         window.alert('No results found');
+  //       }
+  //     } else {
+  //       window.alert('Geocoder failed due to: ' + status);
+  //     }
+  //   });
+  // }
 
 
   $.ajax({
