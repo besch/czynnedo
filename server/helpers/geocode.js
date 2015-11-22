@@ -1,9 +1,12 @@
-var GoogleMapsAPI = require('googlemaps');
+var GoogleMapsAPI = require('googlemaps'),
+		q = require('q');
+
+var deferred = q.defer();
 
 var publicConfig = {
   key: 'AIzaSyB9MOe3_6dF9yB_fGCX2t_lh7nJrGs2ZyE',
   stagger_time:       1000, // for elevationPath
-  encode_polylines:   false,
+  encode_polylines:   false
   // secure:             true, // use https
   // proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests
 };
@@ -13,7 +16,7 @@ var gmAPI = new GoogleMapsAPI(publicConfig);
 
 
 
-exports = function findAddressByCoords (coords) {
+exports.findAddressByCoords = function (coords) {
   // reverse geocode API
   var reverseGeocodeParams = {
     "latlng":        coords,
@@ -23,13 +26,16 @@ exports = function findAddressByCoords (coords) {
     "location_type": "APPROXIMATE"
   };
 
-  gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result){
-    console.log(result);
+  gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
+    // console.log(result);
     return result;
+    // deferred.resolve(result);
   });
-}
 
-exports =  function findCoordsByAdress () {
+  // return deferred.promise;
+};
+
+exports.findCoordsByAdress = function () {
   var geocodeParams = {
     "address":    "55-110 Gola, Poland",
     "components": "components=country:PL",
@@ -42,4 +48,4 @@ exports =  function findCoordsByAdress () {
     console.log(result);
     return result;
   });
-}
+};

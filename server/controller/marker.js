@@ -8,6 +8,8 @@ var Joi = require('joi'),
   q = require('q');
 
 
+var deferred = q.defer();
+
 
 exports.import = {
 
@@ -15,29 +17,45 @@ exports.import = {
     var items = request.payload;
     var response = [];
 
-    items.forEach(function (item) {
-      var marker = new Marker(item);
-      var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
-      
-      findAddressByCoords(position);
+    function iterateJSON() {
+      items.forEach(function (item) {
+        var marker = new Marker(item);
+        var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
 
-      marker.save(function (err, marker) {
-        if (!err) {
-          console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
-        }
-        if (11000 === err.code || 11001 === err.code) {
-          console.log(reply(Boom.forbidden("please provide another id, it already exist")));
-        }
-        console.log(reply(Boom.forbidden(err))); // HTTP 403
+        console.log('geocode.findAddressByCoords(position);', geocode.findAddressByCoords(position));
+
+        // geocode.findAddressByCoords(position).then(function (result) {
+        //   console.log('result', result);
+        //   deferred.resolve(response.push(result));
+        //   return deferred.promise;
+        // });
+
+        deferred.resolve(response.push(geocode.findAddressByCoords(position)));
       });
 
-      // If either address or coordinates exists logic TODO
+        // marker.save(function (err, marker) {
+        //   if (!err) {
+        //     console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
+        //   }
+        //   if (11000 === err.code || 11001 === err.code) {
+        //     console.log(reply(Boom.forbidden("please provide another id, it already exist")));
+        //   }
+        //   console.log(reply(Boom.forbidden(err))); // HTTP 403
+        // });
 
-      
+        // If either address or coordinates exists logic TODO
+      return deferred.promise;
+    }
+
+    console.log('iterateJSON()', iterateJSON());
+    iterateJSON.then(function (result) {
+      console.log('result', result);
+      response.push(result);
+
+      console.log('response', response);
+      reply(response);
     });
 
-    console.log('response', response);
-    reply(response);
   }
 };
 
