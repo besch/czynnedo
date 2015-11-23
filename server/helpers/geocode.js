@@ -27,12 +27,12 @@ exports.findAddressByCoords = function (coords) {
   };
 
   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
+    // return result;
     // console.log(result);
-    return result;
-    // deferred.resolve(result);
+    deferred.resolve(result);
   });
 
-  // return deferred.promise;
+  return deferred.promise;
 };
 
 exports.findCoordsByAdress = function () {

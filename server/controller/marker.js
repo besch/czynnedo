@@ -17,21 +17,87 @@ exports.import = {
     var items = request.payload;
     var response = [];
 
-    function iterateJSON() {
-      items.forEach(function (item) {
-        var marker = new Marker(item);
-        var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+    // var iterateJSON = function () {
+      
+    // var promise = function () {
+    //   items.forEach(function (item) {
+    //     var marker = new Marker(item);
+    //     var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
 
-        console.log('geocode.findAddressByCoords(position);', geocode.findAddressByCoords(position));
+    //     // console.log('geocode.findAddressByCoords(position);', geocode.findAddressByCoords(position));
 
-        // geocode.findAddressByCoords(position).then(function (result) {
-        //   console.log('result', result);
-        //   deferred.resolve(response.push(result));
-        //   return deferred.promise;
-        // });
+    //     geocode.findAddressByCoords(position).then(function (result) {
+    //       console.log('result', result);
+    //       response.push(result);
+    //     });
 
-        deferred.resolve(response.push(geocode.findAddressByCoords(position)));
-      });
+    //     // deferred.resolve(geocode.findAddressByCoords(position));
+    //     deferred.resolve(promise);
+    //   });
+
+    //   return deferred.promise;
+    // };
+
+
+  function iterateJSON (item) {
+    var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+
+    // geocode.findAddressByCoords(position).then(function (result) {
+    //   console.log('coords', result);
+    //   // return response.push(result);
+    //   return result;
+    // });
+
+    return geocode.findAddressByCoords(position);
+
+  }
+
+  // q.all(items.map(iterateJSON))
+  // .then(function (values) {
+  //   console.log('values', values);
+  //   // console.log('result53', result);
+  //   // console.log('response54', response);
+  //   reply(values);
+  // });
+
+q.all(items.map(iterateJSON)).then(function(result) {
+    for (var i = 0, len = result.length; i < len; i++) {
+        if (q.isPromise(result[i])) {
+            result[i] = result[i].valueOf();
+        }
+    }
+
+    console.log('result', result);
+    reply(result);
+
+    // Next step!
+});
+
+
+  // function iterateJSON (item) {
+  //   var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+
+  //   geocode.findAddressByCoords(position).then(function (result) {
+  //     console.log('coords', result);
+  //     return response.push(result);
+  //     // return console.log('response', response);
+  //   });
+  // }
+
+  // return (items.map(iterateJSON)).reduce(q.when, q()).then(reply(response));
+
+
+
+
+  // items.reduce(function (prev, job) {
+  //   return prev.then(function () {
+  //     return iterateJSON(job);
+  //   });
+  // }, q());
+
+
+
+
 
         // marker.save(function (err, marker) {
         //   if (!err) {
@@ -44,17 +110,20 @@ exports.import = {
         // });
 
         // If either address or coordinates exists logic TODO
-      return deferred.promise;
-    }
+      // var position = parseFloat(items[0].latitude) + ',' + parseFloat(items[0].longitude);
+      // deferred.resolve(geocode.findAddressByCoords(position));
+      // return deferred.promise;
+    // }
 
-    console.log('iterateJSON()', iterateJSON());
-    iterateJSON.then(function (result) {
-      console.log('result', result);
-      response.push(result);
+    // console.log('response', response);
+    // console.log('promise', promise);
+    // promise.then(function (result) {
+    //   console.log('result', result);
+    //   // response.push(result);
 
-      console.log('response', response);
-      reply(response);
-    });
+    //   console.log('response', response);
+    //   reply(response);
+    // });
 
   }
 };
