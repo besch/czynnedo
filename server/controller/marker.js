@@ -39,26 +39,26 @@ exports.import = {
     // };
 
 
-  function iterateJSON (item) {
-    var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+  // function iterateJSON (item) {
+  //   var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
 
-    // geocode.findAddressByCoords(position).then(function (result) {
-    //   console.log('coords', result);
-    //   // return response.push(result);
-    //   return result;
-    // });
+  //   // geocode.findAddressByCoords(position).then(function (result) {
+  //   //   console.log('coords', result);
+  //   //   // return response.push(result);
+  //   //   return result;
+  //   // });
 
-    return geocode.findAddressByCoords(position);
+  //   return geocode.findAddressByCoords(position);
 
-  }
+  // }
 
-  // q.all(items.map(iterateJSON))
-  // .then(function (values) {
-  //   console.log('values', values);
-  //   // console.log('result53', result);
-  //   // console.log('response54', response);
-  //   reply(values);
-  // });
+  // // q.all(items.map(iterateJSON))
+  // // .then(function (values) {
+  // //   console.log('values', values);
+  // //   // console.log('result53', result);
+  // //   // console.log('response54', response);
+  // //   reply(values);
+  // // });
 
 
 
@@ -69,12 +69,11 @@ var thenFn = function(value){
     return value;
 };
 
+var results = [];
 
-var results = []
-
-items.forEach(function (item) {
-  console.log('item', item);
-})
+// items.forEach(function (item) {
+//   console.log('item', item);
+// });
 
 q.all(items.map(function (item) { 
   var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);

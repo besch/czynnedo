@@ -27,7 +27,7 @@ exports.findAddressByCoords = function (coords) {
   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
     // return result;
     console.log('YAAAAAAY', (result.results)[0].formatted_address);
-    deferred.resolve((result.results)[0].formatted_address);
+    return deferred.resolve((result.results)[0].formatted_address);
   });
 
   return deferred.promise;
