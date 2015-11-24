@@ -14,8 +14,6 @@ var publicConfig = {
 var gmAPI = new GoogleMapsAPI(publicConfig);
 
 
-
-
 exports.findAddressByCoords = function (coords) {
   // reverse geocode API
   var reverseGeocodeParams = {
@@ -28,14 +26,14 @@ exports.findAddressByCoords = function (coords) {
 
   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
     // return result;
-    // console.log(result);
-    deferred.resolve(result);
+    console.log('YAAAAAAY', (result.results)[0].formatted_address);
+    deferred.resolve((result.results)[0].formatted_address);
   });
 
   return deferred.promise;
 };
 
-exports.findCoordsByAdress = function () {
+exports.findCoordsByAddress = function () {
   var geocodeParams = {
     "address":    "55-110 Gola, Poland",
     "components": "components=country:PL",

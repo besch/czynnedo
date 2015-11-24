@@ -60,18 +60,76 @@ exports.import = {
   //   reply(values);
   // });
 
-q.all(items.map(iterateJSON)).then(function(result) {
-    for (var i = 0, len = result.length; i < len; i++) {
-        if (q.isPromise(result[i])) {
-            result[i] = result[i].valueOf();
-        }
-    }
 
-    console.log('result', result);
-    reply(result);
 
-    // Next step!
+
+
+var thenFn = function(value){
+    console.log('resolved ', value);
+    return value;
+};
+
+
+var results = []
+
+items.forEach(function (item) {
+  console.log('item', item);
+})
+
+q.all(items.map(function (item) { 
+  var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+
+  return geocode.findAddressByCoords(position).then(thenFn);
+
+})).then(function(result) {
+    // for (var i = 0, len = result.length; i < len; i++) {
+    //     if (q.isPromise(result[i])) {
+    //         result[i] = result[i].valueOf();
+    //     }
+    // }
+
+    // console.log('result[0]', result[0].results);
+
+    console.log('result[0]', result[0]);
+    console.log('result[1]', result[1]);
+    console.log('result[2]', result[2]);
+    // results.push(result);
+    // reply(result[0].results, result[1].results);
+    // reply(results);
+    return reply(result);
 });
+
+// return arr.reduce(function (promise, item) {
+//   return promise.then(function (result) {
+//     return asyncWithResult(item, result);
+//   });
+// }, q());
+
+
+
+// q.all(items.map(iterateJSON)).then(function(result) {
+//     for (var i = 0, len = result.length; i < len; i++) {
+//         if (q.isPromise(result[i])) {
+//             result[i] = result[i].valueOf();
+//         }
+//     }
+
+//     // console.log('result[0]', result[0].results);
+
+//     console.log('result', result);
+//     reply(result);
+
+//     // Next step!
+// });
+
+
+
+
+
+
+
+
+
 
 
   // function iterateJSON (item) {
