@@ -8,180 +8,50 @@ var Joi = require('joi'),
   q = require('q');
 
 
-var deferred = q.defer();
-
 
 exports.import = {
 
   handler: function (request, reply) {
     var items = request.payload;
-    var response = [];
 
-    // var iterateJSON = function () {
-      
-    // var promise = function () {
-    //   items.forEach(function (item) {
-    //     var marker = new Marker(item);
-    //     var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+    var thenFn = function(value) {
+      return value;
+    };
 
-    //     // console.log('geocode.findAddressByCoords(position);', geocode.findAddressByCoords(position));
-
-    //     geocode.findAddressByCoords(position).then(function (result) {
-    //       console.log('result', result);
-    //       response.push(result);
-    //     });
-
-    //     // deferred.resolve(geocode.findAddressByCoords(position));
-    //     deferred.resolve(promise);
-    //   });
-
-    //   return deferred.promise;
-    // };
+    var errorFn = function(value) {
+      return value;
+    };
 
 
-  // function iterateJSON (item) {
-  //   var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
+    function saveMarker (markerObj) {
 
-  //   // geocode.findAddressByCoords(position).then(function (result) {
-  //   //   console.log('coords', result);
-  //   //   // return response.push(result);
-  //   //   return result;
-  //   // });
+      var marker = new Marker(markerObj);
 
-  //   return geocode.findAddressByCoords(position);
-
-  // }
-
-  // // q.all(items.map(iterateJSON))
-  // // .then(function (values) {
-  // //   console.log('values', values);
-  // //   // console.log('result53', result);
-  // //   // console.log('response54', response);
-  // //   reply(values);
-  // // });
+      marker.save(function (err, marker) {
+        if (!err) {
+          console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
+        }
+        // if (11000 === err.code || 11001 === err.code) {
+        //   console.log(reply(Boom.forbidden("please provide another id, it already exist")));
+        // }
+        console.log(reply(Boom.forbidden(err))); // HTTP 403
+      });
+    }
 
 
+    q.all(items.map(function (item) {
 
+      return geocode.addAddressToMarker(item).then(thenFn, errorFn);
 
+    })).then(function(markers) {
 
-var thenFn = function(value){
-    console.log('resolved ', value);
-    return value;
-};
+      markers.forEach(function (marker) {
 
-var results = [];
+        saveMarker(marker);
 
-// items.forEach(function (item) {
-//   console.log('item', item);
-// });
+      });
 
-q.all(items.map(function (item) { 
-  var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
-
-  return geocode.findAddressByCoords(position).then(thenFn);
-
-})).then(function(result) {
-    // for (var i = 0, len = result.length; i < len; i++) {
-    //     if (q.isPromise(result[i])) {
-    //         result[i] = result[i].valueOf();
-    //     }
-    // }
-
-    // console.log('result[0]', result[0].results);
-
-    console.log('result[0]', result[0]);
-    console.log('result[1]', result[1]);
-    console.log('result[2]', result[2]);
-    // results.push(result);
-    // reply(result[0].results, result[1].results);
-    // reply(results);
-    return reply(result);
-});
-
-// return arr.reduce(function (promise, item) {
-//   return promise.then(function (result) {
-//     return asyncWithResult(item, result);
-//   });
-// }, q());
-
-
-
-// q.all(items.map(iterateJSON)).then(function(result) {
-//     for (var i = 0, len = result.length; i < len; i++) {
-//         if (q.isPromise(result[i])) {
-//             result[i] = result[i].valueOf();
-//         }
-//     }
-
-//     // console.log('result[0]', result[0].results);
-
-//     console.log('result', result);
-//     reply(result);
-
-//     // Next step!
-// });
-
-
-
-
-
-
-
-
-
-
-
-  // function iterateJSON (item) {
-  //   var position = parseFloat(item.latitude) + ',' + parseFloat(item.longitude);
-
-  //   geocode.findAddressByCoords(position).then(function (result) {
-  //     console.log('coords', result);
-  //     return response.push(result);
-  //     // return console.log('response', response);
-  //   });
-  // }
-
-  // return (items.map(iterateJSON)).reduce(q.when, q()).then(reply(response));
-
-
-
-
-  // items.reduce(function (prev, job) {
-  //   return prev.then(function () {
-  //     return iterateJSON(job);
-  //   });
-  // }, q());
-
-
-
-
-
-        // marker.save(function (err, marker) {
-        //   if (!err) {
-        //     console.log(reply(marker).created('/marker/' + marker._id)); // HTTP 201
-        //   }
-        //   if (11000 === err.code || 11001 === err.code) {
-        //     console.log(reply(Boom.forbidden("please provide another id, it already exist")));
-        //   }
-        //   console.log(reply(Boom.forbidden(err))); // HTTP 403
-        // });
-
-        // If either address or coordinates exists logic TODO
-      // var position = parseFloat(items[0].latitude) + ',' + parseFloat(items[0].longitude);
-      // deferred.resolve(geocode.findAddressByCoords(position));
-      // return deferred.promise;
-    // }
-
-    // console.log('response', response);
-    // console.log('promise', promise);
-    // promise.then(function (result) {
-    //   console.log('result', result);
-    //   // response.push(result);
-
-    //   console.log('response', response);
-    //   reply(response);
-    // });
-
+    });
   }
 };
 

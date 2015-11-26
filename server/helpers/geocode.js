@@ -1,8 +1,6 @@
 var GoogleMapsAPI = require('googlemaps'),
 		q = require('q');
 
-var deferred = q.defer();
-
 var publicConfig = {
   key: 'AIzaSyB9MOe3_6dF9yB_fGCX2t_lh7nJrGs2ZyE',
   stagger_time:       1000, // for elevationPath
@@ -14,24 +12,57 @@ var publicConfig = {
 var gmAPI = new GoogleMapsAPI(publicConfig);
 
 
-exports.findAddressByCoords = function (coords) {
-  // reverse geocode API
+// exports.findAddressByCoords = function (coords) {
+
+// 	var deferred = q.defer();
+
+//   // reverse geocode API
+//   var reverseGeocodeParams = {
+//     "latlng":        coords,
+//     // "latlng":        "51.1245,-0.0523",
+//     "result_type":   "postal_code",
+//     "language":      "en",
+//     "location_type": "APPROXIMATE"
+//   };
+
+//   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
+
+//     // console.log('YAAAAAAY', (result.results)[0].formatted_address);
+//     return deferred.resolve((result.results)[0].formatted_address);
+//   });
+
+//   return deferred.promise;
+// };
+
+
+
+
+exports.addAddressToMarker = function (marker) {
+
+	var deferred = q.defer();
+	var coords = parseFloat(marker.latitude) + ',' + parseFloat(marker.longitude);
+
   var reverseGeocodeParams = {
     "latlng":        coords,
-    // "latlng":        "51.1245,-0.0523",
     "result_type":   "postal_code",
     "language":      "en",
     "location_type": "APPROXIMATE"
   };
 
   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
-    // return result;
-    console.log('YAAAAAAY', (result.results)[0].formatted_address);
-    return deferred.resolve((result.results)[0].formatted_address);
+
+    marker.address = (result.results)[0].formatted_address;
+    return deferred.resolve(marker);
+
   });
 
   return deferred.promise;
 };
+
+
+
+
+
 
 exports.findCoordsByAddress = function () {
   var geocodeParams = {
