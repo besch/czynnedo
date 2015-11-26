@@ -12,31 +12,31 @@ var markerSchema = new Schema({
   latitude:    { type: Number, required: true },
   longitude:   { type: Number, required: true },
   weekdays: {
-    monday: {
+    1: {
       open:    Number,
       close:   Number,
     },
-    tuesday: {
+    2: {
       open:    Number,
       close:   Number,
     },
-    wednesday: {
+    3: {
       open:    Number,
       close:   Number,
     },
-    thursday: {
+    4: {
       open:    Number,
       close:   Number,
     },
-    friday: {
+    5: {
       open:    Number,
       close:   Number,
     },
-    saturday: {
+    6: {
       open:    Number,
       close:   Number,
     },
-    sunday: {
+    7: {
       open:    Number,
       close:   Number,
     }
@@ -48,3 +48,55 @@ var marker = mongoose.model('marker', markerSchema);
 module.exports = {
   Marker : marker
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var markerSchema = new Schema({
+//   name:        { type: String, required: true },
+//   description: { type: String },
+//   category:    { type: String, required: true },
+//   created:     { type: Date, default: Date.now },
+//   address:     { type: String },
+//   latitude:    { type: Number, required: true },
+//   longitude:   { type: Number, required: true },
+//   weekdays: {
+//     monday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     tuesday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     wednesday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     thursday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     friday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     saturday: {
+//       open:    Number,
+//       close:   Number,
+//     },
+//     sunday: {
+//       open:    Number,
+//       close:   Number,
+//     }
+//   }
+// });

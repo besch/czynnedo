@@ -56,7 +56,13 @@ exports.import = {
 };
 
 exports.getAll = {
+
   handler: function (request, reply) {
+
+    var date = new Date();
+    var today = date.getDay(); // number
+    var currentTime = date.getHours + date.getMinutes;
+    
     Marker.find({}, function (err, marker) {
       if (!err) {
         return reply(marker);
