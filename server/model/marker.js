@@ -7,11 +7,12 @@ var markerSchema = new Schema({
   name:        { type: String, required: true },
   description: { type: String },
   category:    { type: String, required: true },
-  created:     { type: Date, default: Date.now },
+  subcategory: { type: String },
   address:     { type: String },
+  created:     { type: Date, default: Date.now },
   latitude:    { type: Number, required: true },
   longitude:   { type: Number, required: true },
-  weekdays: {
+  weekdays:    {
     1: {
       open:    Number,
       close:   Number,
@@ -40,7 +41,9 @@ var markerSchema = new Schema({
       open:    Number,
       close:   Number,
     }
-  }
+  },
+  images: 		{ data: Buffer, type: String },
+  links: 			{ type: String }
 });
 
 var marker = mongoose.model('marker', markerSchema);

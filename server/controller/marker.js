@@ -62,8 +62,12 @@ exports.getAll = {
     var date = new Date();
     var today = date.getDay(); // number
     var currentTime = date.getHours + date.getMinutes;
-    
-    Marker.find({}, function (err, marker) {
+
+    Marker.find({ 
+      // 'weekdays': today, 
+      // 'weekdays.' + today + '.open':  { $gt: currentTime },
+      // 'weekdays.' + today + '.close':  { $lt: currentTime }
+    }, function (err, marker) {
       if (!err) {
         return reply(marker);
       }
