@@ -1,0 +1,28 @@
+{
+  "name": "czynnedo",
+  "description": "czynnedo",
+  "version": "0.1.0",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=0.12.7",
+    "npm": ">=2.11.3"
+  },
+  "dependencies": {
+    "boom": "^2.6.1",
+    "googlemaps": "^1.0.2",
+    "hapi": "^8.2.0",
+    "joi": "^5.1.0",
+    "mongoose": "3.8.23",
+    "q": "^1.4.1"
+  },
+  "keywords": [
+    "czynnedo"
+  ],
+  "author": {
+    "name": "Nikolay Vinogradskiy",
+    "email": "vinogradskiy.n@mail.com"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  }
+}

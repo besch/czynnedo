@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <!-- <h3 class="panel-title">Import markers as JSON</h3> -->
+    </div>
+    <div class="panel-body">
+      <textarea id="import-markers-json"></textarea>
+      <!-- <button id="import-markers-upload" class="btn btn-success">Upload markers</button> -->
+      <button id="import-markers-upload" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false"></script>
+
+  <script type="text/javascript" src="assets/maps.js"></script>
+  <script type="text/javascript" src="assets/importMarkers.js"></script>
+
+</body>
+</html>
