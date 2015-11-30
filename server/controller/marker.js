@@ -61,13 +61,28 @@ exports.getAll = {
 
     var date = new Date();
     var today = date.getDay(); // number
-    var currentTime = date.getHours + date.getMinutes;
+    var minutes = date.getMinutes();
 
-    Marker.find({ 
-      // 'weekdays': today, 
-      // 'weekdays.' + today + '.open':  { $gt: currentTime },
-      // 'weekdays.' + today + '.close':  { $lt: currentTime }
-    }, function (err, marker) {
+    if (date.getMinutes() < 10) {
+      minutes = '0' + minutes;
+    }
+
+    var currentTime = parseInt(date.getHours() + '' + minutes);
+    console.log('date.getHours()', date.getHours());
+    console.log('minutes', minutes);
+
+    var query = {};
+    var open = 'open_' + today;
+    var close = 'close_' + today;
+
+    query[open] = { $lt: currentTime };
+    query[close] = { $gt: currentTime };
+
+    console.log('query', query);
+
+    Marker.find(query, function (err, marker) {
+      console.log('marker', marker);
+
       if (!err) {
         return reply(marker);
       }
