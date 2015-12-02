@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  	Schema = mongoose.Schema,
+  	date = new Date();
 
 var markerSchema = new Schema({
   name:        { type: String, required: true },
@@ -9,7 +10,9 @@ var markerSchema = new Schema({
   category:    { type: String, required: true },
   subcategory: { type: String },
   address:     { type: String },
-  created:     { type: Date, default: Date.now },
+  rating:      { type: Number },
+  created:     { type: Date, default: date.getTime() },
+  created:     { type: Date, default: date.getTime() },
   latitude:    { type: Number, required: true },
   longitude:   { type: Number, required: true },
   images:      { data: Buffer, type: String },

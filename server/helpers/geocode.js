@@ -12,31 +12,6 @@ var publicConfig = {
 var gmAPI = new GoogleMapsAPI(publicConfig);
 
 
-// exports.findAddressByCoords = function (coords) {
-
-// 	var deferred = q.defer();
-
-//   // reverse geocode API
-//   var reverseGeocodeParams = {
-//     "latlng":        coords,
-//     // "latlng":        "51.1245,-0.0523",
-//     "result_type":   "postal_code",
-//     "language":      "en",
-//     "location_type": "APPROXIMATE"
-//   };
-
-//   gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result) {
-
-//     // console.log('YAAAAAAY', (result.results)[0].formatted_address);
-//     return deferred.resolve((result.results)[0].formatted_address);
-//   });
-
-//   return deferred.promise;
-// };
-
-
-
-
 exports.addAddressToMarker = function (marker) {
 
 	var deferred = q.defer();
@@ -58,10 +33,6 @@ exports.addAddressToMarker = function (marker) {
 
   return deferred.promise;
 };
-
-
-
-
 
 
 exports.findCoordsByAddress = function () {

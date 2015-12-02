@@ -68,8 +68,6 @@ exports.getAll = {
     }
 
     var currentTime = parseInt(date.getHours() + '' + minutes);
-    console.log('date.getHours()', date.getHours());
-    console.log('minutes', minutes);
 
     var query = {};
     var open = 'open_' + today;
